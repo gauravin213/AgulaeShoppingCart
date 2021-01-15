@@ -1,0 +1,38 @@
+<p>Shop Page</p>
+
+<div *ngIf="loaderCheck">
+  Loading..
+</div>
+
+<div class="row">
+    <div class="col-sm-8">
+      
+      <div class="row">
+        <div class="col-sm-4" *ngFor="let product of products; ; let i=index">
+          <div class="card" style="width: 18rem;margin-bottom: 10px;">
+            <img class="card-img-top" src="{{product.images['0']['src']}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{product.name}}</h5>
+              <p class="card-text" [innerHTML]="product.description"></p>
+              <p [innerHTML]="product.price_html"></p>
+              <a href="javascript://" class="btn btn-primary" (click)="addtocart(product)">Add to cart</a>
+              <a href="javascript://" class="btn btn-primary" (click)="singleProductView(product)">View</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <app-cart></app-cart>
+      Cart
+      <ul *ngFor="let cartItem of cartItems; let i = index">
+        <li>
+          <p>{{cartItem.name}} X  {{cartItem.qty}}</p>
+          <p>Price: {{cartItem.price * cartItem.qty}}</p>
+          <a href="javascript://" (click)="removeCartItem(i, 1, cartItem)">X</a>
+        </li>
+      </ul>
+      <p>Total: {{getCartTotalAmount()}}</p>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<p>product works!</p>
+
+{{singleProduct.name}}
+
+<div *ngIf="loaderCheck;then content else other_content">here is ignored</div>    
+<ng-template #content>loading...</ng-template>
+<ng-template #other_content>
+
+    <div class="row">
+        <div class="6">
+            <img class="card-img-top" src="{{singleProduct.images['0']['src']}}" alt="Card image cap" style="width: 40%;">
+        </div>
+        <div class="6">
+            <h5 class="card-title">{{singleProduct.name}}</h5>
+            <p class="card-text" [innerHTML]="singleProduct.description"></p>
+            <p>{{singleProduct.price}}</p>
+            <a href="javascript://" class="btn btn-primary" (click)="addtocart(singleProduct)">Add to cart</a>
+        </div>
+    </div>
+
+</ng-template>
+
